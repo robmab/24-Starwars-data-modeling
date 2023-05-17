@@ -10,5 +10,9 @@
     "python.testing.unittestEnabled": false,
     "python.testing.pytestArgs": [
         "assets"
-    ]
+    ],
+    "[python]": {
+        "editor.defaultFormatter": "ms-python.autopep8"
+    },
+    "python.formatting.provider": "none"
 }
