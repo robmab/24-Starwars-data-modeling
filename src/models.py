@@ -11,13 +11,18 @@ Base = declarative_base()
 class Users(Base):
     __tablename__ = 'users'
     id = Column(Integer, primary_key=True)
-    
+
     name = Column(String(10), nullable=False)
     last_name = Column(String(10), nullable=False)
     email = Column(String(20), unique=True, nullable=False)
     password = Column(String(50), nullable=False)
 
-    """ favourites = relationship('Favourites', backref='person', lazy=True) """
+    favourites_persons = relationship(
+        "Favourites_persons", backref='persons', lazy=True)
+    favourites_vehicles = relationship(
+        "Favourites_vehicles", backref='persons', lazy=True)
+    favourites_planets = relationship(
+        "Favourites_planets", backref='persons', lazy=True)
 
 
 class Persons(Base):
@@ -31,6 +36,9 @@ class Persons(Base):
     hair_color = Column(String(10), nullable=False)
     mass = Column(Integer, nullable=False)
     height = Column(Integer, nullable=False)
+
+    favourites_persons = relationship(
+        "Favourites_persons", backref='persons', lazy=True)
 
 
 class Vehicles(Base):
@@ -49,6 +57,9 @@ class Vehicles(Base):
     cargo_capacity = Column(Integer, nullable=False)
     consumables = Column(String(20), nullable=False)
 
+    favourites_vehicles = relationship(
+        "Favourites_vehicles", backref='vehicles', lazy=True)
+
 
 class Planets(Base):
     __tablename__ = 'planets'
@@ -63,6 +74,9 @@ class Planets(Base):
     climate = Column(String(20), nullable=False)
     terrain = Column(String(20), nullable=False)
     surface_water = Column(Integer, nullable=False)
+
+    favourites_planets = relationship(
+        "Favourites_planets", backref='planets', lazy=True)
 
 
 # FAVOURITES
